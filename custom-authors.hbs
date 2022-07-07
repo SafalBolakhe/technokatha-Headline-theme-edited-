@@ -2,7 +2,6 @@
   @media (min-width: 1024px) {
     .post-card
       {
-      width: 20%; 
       background-color:#ffd574; 
       padding:20px; 
       border-radius: 5px;
@@ -14,22 +13,37 @@
       margin: 0 auto;
       max-width: 1200px;
       }
+      .column
+      {
+        float: left;
+        width: 25%;
+        padding: 0 10px;
+      }
+      .row {
+        margin: 0 -5px;
+      }
+      .row:after {
+        content: " ";
+        display: table;
+        clear: both;
+      }
   }
   @media (max-width: 767px) {
     .post-card
       {
-      width: 90%; 
       background-color:#ffd574; 
       padding:20px; 
       border-radius: 5px;
       margin: 20px;
       }
+      .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
   }
   @media (min-width: 768px) and (max-width: 1023px) {
     .post-card
       {
-
-      width: 30%; 
       background-color:#ffd574; 
       padding:20px; 
       border-radius: 5px;
@@ -55,7 +69,9 @@
     <div class="spacer" style="margin-bottom: 30px;"></div>
     {{#get 'authors' limit='all' include='count.posts' order='count.posts desc'}}
       <div class="post-feed" style="padding:20px; margin: 10px;">
+        <div class="row"></div>
         {{#foreach authors}}
+        <div class="column">
           <article class="post-card {{#unless profile_image}} no-image{{/unless}}" >
           <a href="{{url}}">
 
@@ -123,7 +139,9 @@
             </div>
           </article>
           </a>
+          </div>
         {{/foreach}}
+        </div>
       </div>
     {{/get}}
   </div>
